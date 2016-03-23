@@ -1,0 +1,30 @@
+class ConversationController < ActionController::Base
+  def show
+  	  @conversation = Mailboxer::Conversation.find(params[:id])
+      @other_user = (@conversation.participants - [User.find(current_user.id)]).first
+      @receipts = @conversation.receipts.where(receiver_id: current_user.id).order("created_at asc")
+  end
+
+  def create
+      @conversation = Mailboxer::Conversation.find(params[:id])
+      current_user.reply_to_conversation(@conversation, params[:message][:body])
+      @receipt = @conversation.receipts.last
+      @message = @receipt.message
+
+      avatar_url = current_user.avatar_url.present? ? current_user.avatar_url : 'not_ava.png'
+      data = { message: {conversation_id: @conversation.id, mailbox_type: @receipt.mailbox_type,
+               body: @message.body, avatar_url: avatar_url, receiver_id: current_user.id,
+               created_at_time: @receipt.created_at.strftime("%I:%M %p"), created_at_day: @receipt.created_at.strftime('%e %b') }}
+      channel = '/conversations/' + @conversation.id.to_s
+      broadcast(channel, data)
+  end
+
+  private
+
+    def broadcast(channel, data)
+      base_url = request ? request.base_url : "http://localhost:3000"
+      client = Faye::Client.new("#{base_url}/faye")
+      client.publish(channel, data)
+    end
+end
+

@@ -1,0 +1,25 @@
+/*
+ *= require_self
+ *= require cf
+ *= require slick
+ *= require chosen
+ *= require datepicker
+ *= require font-awesome.min
+ *= require jquery-te-1.4.0
+ *= require summernote
+ *= require jquery.Jcrop.min
+ *= require fullcalendar.min
+ *= require video-js-4.12.5
+ *= require introjs
+ *= require bootstrap.min
+ *= require style
+ *= require style-mod
+ *= require font-mod
+ *= require dev
+ *= require custom-style
+ *= require fileinput
+ *= require bootstrap-multiselect.css
+ *= require bootstrap-slider.min
+ *= require select2
+ */
+

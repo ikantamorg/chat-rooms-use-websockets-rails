@@ -1,0 +1,2 @@
+//= require faye
+//= require comments

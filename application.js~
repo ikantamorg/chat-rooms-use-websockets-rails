@@ -1,0 +1,21 @@
+// Should be included in footer
+// Use head.js if you want to place script in <head>
+
+// Load your needed localization before parsley
+
+//= require vendor/parsley.i18n.custom-en
+//= require parsley-2.0.5
+//= require parsley.remote
+//= require jquery_ujs
+//= require jquery.form
+//= require jquery.validate.min
+//= require chosen.jquery.min
+//= require bootstrap.min
+//= require bootstrap-datepicker
+//= require cf
+//= require jquery-te-1.4.0.min
+//= require summernote
+//= require slick.min
+//= require utils/ui
+//= require blocks/header/header_buttons
+//= require faye
